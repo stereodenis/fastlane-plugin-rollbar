@@ -22,6 +22,19 @@ rollbar_sourcemaps_upload(
   os: ['ios', 'android'],
   code_version: 'your_code_version'
 )
+
+rollbar_dsym_upload(
+  api_key: 'YOUR_ROLLBAR_SERVER_API_KEY',
+  dsym_path: '/path/to/dsym.zip',
+  code_version: 'your_code_version',
+  bundle_identifier: 'YOUR_BUNDLE_IDENTIFIER',
+)
+
+rollbar_proguard_upload(
+  api_key: 'YOUR_ROLLBAR_SERVER_API_KEY',
+  proguard_path: /path/to/mapping.txt,
+  code_version: 'your_code_version',
+)
 ```
 
 ## Run tests for this plugin

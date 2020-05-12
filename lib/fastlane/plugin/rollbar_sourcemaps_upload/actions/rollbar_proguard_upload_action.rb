@@ -5,20 +5,17 @@ require_relative '../helper/rollbar_sourcemaps_upload_helper'
 
 module Fastlane
   module Actions
-    class RollbarSourcemapsUploadAction < Action
+    class RollbarProguardUploadAction < Action
       def self.run(params)
-        params[:os].each do |os|
-          Helper::RollbarSourcemapsUploadHelper.create_bundle(os)
-          Helper::RollbarSourcemapsUploadHelper.upload_bundle(
-            params[:api_key],
-            os,
-            params[:code_version]
-          )
-        end
+        Helper::RollbarSourcemapsUploadHelper.upload_proguard(
+          params[:api_key],
+          params[:proguard_path],
+          params[:code_version],
+        )
       end
 
       def self.description
-        'Helps to upload sourcemaps to Rollbar'
+        'Helps to upload Proguard mappings to Rollbar'
       end
 
       def self.authors
@@ -31,15 +28,14 @@ module Fastlane
 
       def self.details
         # Optional:
-        'Helps to upload sourcemaps to Rollbar'
+        'Helps to upload Proguard mappings to Rollbar'
       end
 
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(key: :api_key, description: 'Rollbar API key', optional: false, type: String),
-          FastlaneCore::ConfigItem.new(key: :os, description: 'OS list', optional: false, type: Array),
+          FastlaneCore::ConfigItem.new(key: :proguard_path, description: 'Proguard mapping path', optional: false, type: String),
           FastlaneCore::ConfigItem.new(key: :code_version, description: 'Code version', optional: false, type: String),
-          FastlaneCore::ConfigItem.new(key: :bundle_identifier, description: 'Bundle identifier', optional: true, type: String)
         ]
       end
 

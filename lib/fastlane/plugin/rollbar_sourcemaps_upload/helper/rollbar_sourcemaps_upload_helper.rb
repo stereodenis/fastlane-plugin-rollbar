@@ -4,7 +4,10 @@ require 'fastlane_core/ui/ui'
 
 module Fastlane
   UI = FastlaneCore::UI unless Fastlane.const_defined?('UI')
-  API_SOURCEMAP_URL = 'https://api.rollbar.com/api/1/sourcemap'.freeze
+  API_URL = 'https://api.rollbar.com/api/1'.freeze
+  API_SOURCEMAP_URL = "#{API_URL}/sourcemap".freeze
+  API_DSYM_URL = "#{API_URL}/dsym".freeze
+  API_PROGUARD_URL = "#{API_URL}/proguard".freeze
 
   module Helper
     class RollbarSourcemapsUploadHelper
@@ -34,6 +37,23 @@ module Fastlane
           -F minified_url=http://reactnativehost/#{jsbundle} \
           -F source_map=@tmp/sourcemap.#{os}.js \
           -F index.js=@index.js")
+      end
+
+      def self.upload_dsym(api_key, dsym_path, code_version, bundle_identifier)
+        UI.message('Uploading Dsym to Rollbar')
+        Action.sh("curl -X POST #{API_DSYM_URL} \
+          -F access_token=#{api_key} \
+          -F version=#{code_version}.ios \
+          -F bundle_identifier=#{bundle_identifier} \
+          -F dsym=@#{dsym_path}")
+      end
+
+      def self.upload_proguard(api_key, proguard_path, code_version)
+        UI.message('Uploading Proguard mapping to Rollbar')
+        Action.sh("curl #{API_PROGUARD_URL} \
+          -F access_token=#{api_key} \
+          -F version=#{code_version}.android \
+          -F mapping=@#{proguard_path}")
       end
 
       def self.show_message
