@@ -1,24 +1,21 @@
 # frozen_string_literal: true
 
 require 'fastlane/action'
-require_relative '../helper/rollbar_sourcemaps_upload_helper'
+require_relative '../helper/rollbar_helper'
 
 module Fastlane
   module Actions
-    class RollbarSourcemapsUploadAction < Action
+    class RollbarReportDeployAction < Action
       def self.run(params)
-        params[:os].each do |os|
-          Helper::RollbarSourcemapsUploadHelper.create_bundle(os)
-          Helper::RollbarSourcemapsUploadHelper.upload_bundle(
-            params[:api_key],
-            os,
-            params[:code_version]
-          )
-        end
+        Helper::RollbarSourcemapsUploadHelper.report_deploy(
+          params[:api_key],
+          params[:environment],
+          params[:revision],
+        )
       end
 
       def self.description
-        'Helps to upload sourcemaps to Rollbar'
+        'Helps to report deploy to Rollbar'
       end
 
       def self.authors
@@ -30,16 +27,15 @@ module Fastlane
       end
 
       def self.details
-        # Optional:
-        'Helps to upload sourcemaps to Rollbar'
+        'Helps to report deploy to Rollbar'
       end
 
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(key: :api_key, description: 'Rollbar API key', optional: false, type: String),
-          FastlaneCore::ConfigItem.new(key: :os, description: 'OS list', optional: false, type: Array),
-          FastlaneCore::ConfigItem.new(key: :code_version, description: 'Code version', optional: false, type: String),
-          FastlaneCore::ConfigItem.new(key: :bundle_identifier, description: 'Bundle identifier', optional: true, type: String)
+          FastlaneCore::ConfigItem.new(key: :environment, description: 'Environment', optional: false, type: String),
+          FastlaneCore::ConfigItem.new(key: :revision, description: 'Git SHA of revision being deployed', optional: false, type: String),
+          # FastlaneCore::ConfigItem.new(key: :bundle_identifier, description: 'Bundle identifier', optional: false, type: String)
         ]
       end
 

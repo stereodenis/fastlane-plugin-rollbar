@@ -1,18 +1,18 @@
-# rollbar_sourcemaps_upload plugin
+# rollbar plugin
 
-[![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-rollbar_sourcemaps_upload)
+[![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-rollbar)
 
 ## Getting Started
 
-This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-rollbar_sourcemaps_upload`, add it to your project by running:
+This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-rollbar`, add it to your project by running:
 
 ```bash
-fastlane add_plugin rollbar_sourcemaps_upload
+fastlane add_plugin rollbar
 ```
 
-## About rollbar_sourcemaps_upload
+## About rollbar
 
-Helps to upload sourcemaps to Rollbar
+Helps to upload sourcemaps/dsyms/proguard mapping/deploy report to Rollbar
 
 ## Example
 
@@ -21,6 +21,7 @@ rollbar_sourcemaps_upload(
   api_key: 'YOUR_ROLLBAR_SERVER_API_KEY',
   os: ['ios', 'android'],
   code_version: 'your_code_version'
+  environment: 'production',
 )
 
 rollbar_dsym_upload(
@@ -28,12 +29,20 @@ rollbar_dsym_upload(
   dsym_path: '/path/to/dsym.zip',
   code_version: 'your_code_version',
   bundle_identifier: 'YOUR_BUNDLE_IDENTIFIER',
+  environment: 'production',
 )
 
 rollbar_proguard_upload(
   api_key: 'YOUR_ROLLBAR_SERVER_API_KEY',
   proguard_path: /path/to/mapping.txt,
   code_version: 'your_code_version',
+  environment: 'production',
+)
+
+rollbar_report_deploy(
+  api_key: 'YOUR_ROLLBAR_SERVER_API_KEY',
+  environment: 'production',
+  revision: 'GIT_SHA_REVISION',
 )
 ```
 

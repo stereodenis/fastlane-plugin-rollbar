@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'fastlane/action'
-require_relative '../helper/rollbar_sourcemaps_upload_helper'
+require_relative '../helper/rollbar_helper'
 
 module Fastlane
   module Actions
@@ -11,6 +11,7 @@ module Fastlane
           params[:api_key],
           params[:proguard_path],
           params[:code_version],
+          params[:environment],
         )
       end
 
@@ -36,6 +37,7 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :api_key, description: 'Rollbar API key', optional: false, type: String),
           FastlaneCore::ConfigItem.new(key: :proguard_path, description: 'Proguard mapping path', optional: false, type: String),
           FastlaneCore::ConfigItem.new(key: :code_version, description: 'Code version', optional: false, type: String),
+          FastlaneCore::ConfigItem.new(key: :environment, description: 'Environment', optional: false, type: String),
         ]
       end
 

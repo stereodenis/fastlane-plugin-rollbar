@@ -8,6 +8,7 @@ module Fastlane
   API_SOURCEMAP_URL = "#{API_URL}/sourcemap".freeze
   API_DSYM_URL = "#{API_URL}/dsym".freeze
   API_PROGUARD_URL = "#{API_URL}/proguard".freeze
+  API_DEPLOY_URL = "#{API_URL}/deploy".freeze
 
   module Helper
     class RollbarSourcemapsUploadHelper
@@ -28,36 +29,47 @@ module Fastlane
           --sourcemap-sources-root ./")
       end
 
-      def self.upload_bundle(api_key, os, code_version)
+      def self.upload_bundle(api_key, os, code_version, environment)
         UI.message('Uploading React Native bundle to Rollbar')
         jsbundle = os == 'ios' ? 'main.jsbundle' : 'index.android.bundle'
         Action.sh("curl #{API_SOURCEMAP_URL} \
           -F access_token=#{api_key} \
           -F version=#{code_version}.#{os} \
           -F minified_url=http://reactnativehost/#{jsbundle} \
+          -F environment=#{environment} \
           -F source_map=@tmp/sourcemap.#{os}.js \
           -F index.js=@index.js")
       end
 
-      def self.upload_dsym(api_key, dsym_path, code_version, bundle_identifier)
+      def self.upload_dsym(api_key, dsym_path, code_version, bundle_identifier, environment)
         UI.message('Uploading Dsym to Rollbar')
         Action.sh("curl -X POST #{API_DSYM_URL} \
           -F access_token=#{api_key} \
           -F version=#{code_version}.ios \
           -F bundle_identifier=#{bundle_identifier} \
+          -F environment=#{environment} \
           -F dsym=@#{dsym_path}")
       end
 
-      def self.upload_proguard(api_key, proguard_path, code_version)
+      def self.upload_proguard(api_key, proguard_path, code_version, environment)
         UI.message('Uploading Proguard mapping to Rollbar')
         Action.sh("curl #{API_PROGUARD_URL} \
           -F access_token=#{api_key} \
           -F version=#{code_version}.android \
+          -F environment=#{environment} \
           -F mapping=@#{proguard_path}")
       end
 
+      def self.report_deploy(api_key, environment, revision)
+        UI.message('Report deploy to Rollbar')
+        Action.sh("curl #{API_DEPLOY_URL} \
+          -F access_token=#{api_key} \
+          -F environment=#{environment} \
+          -F revision=#{revision}")
+      end
+
       def self.show_message
-        UI.message('Hello from the rollbar_sourcemaps_upload plugin helper!')
+        UI.message('Hello from the rollbar plugin helper!')
       end
     end
   end

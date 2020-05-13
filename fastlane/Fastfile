@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 lane :test do
-  rollbar_sourcemaps_upload
+  rollbar
 end

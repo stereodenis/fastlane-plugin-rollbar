@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fastlane-plugin-rollbar_sourcemaps_upload (0.1.1)
+    fastlane-plugin-rollbar (0.1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -224,7 +224,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   fastlane (>= 2.146.1)
-  fastlane-plugin-rollbar_sourcemaps_upload!
+  fastlane-plugin-rollbar!
   pry
   rake
   rspec
