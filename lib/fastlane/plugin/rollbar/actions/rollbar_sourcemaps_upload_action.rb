@@ -13,8 +13,7 @@ module Fastlane
           params[:os],
           params[:code_version],
           params[:environment],
-          )
-        end
+        )
       end
 
       def self.description
