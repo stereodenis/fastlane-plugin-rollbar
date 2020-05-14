@@ -5,7 +5,7 @@ require_relative '../helper/rollbar_helper'
 
 module Fastlane
   module Actions
-    class RollbarAction < Action
+    class RollbarSourcemapsUploadAction < Action
       def self.run(params)
         Helper::RollbarHelper.create_bundle(os)
         Helper::RollbarHelper.upload_bundle(
