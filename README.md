@@ -1,6 +1,7 @@
 # rollbar plugin
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-rollbar)
+[![Gem Version](https://badge.fury.io/rb/fastlane-plugin-rollbar.svg)](https://badge.fury.io/rb/fastlane-plugin-rollbar)
 
 ## Getting Started
 
