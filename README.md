@@ -19,7 +19,7 @@ Helps to upload sourcemaps/dsyms/proguard mapping/deploy report to Rollbar
 ```
 rollbar_sourcemaps_upload(
   api_key: 'YOUR_ROLLBAR_SERVER_API_KEY',
-  os: ['ios', 'android'],
+  os: 'ios', // 'android'
   code_version: 'your_code_version'
   environment: 'production',
 )
