@@ -11,9 +11,9 @@ module Fastlane
   API_DEPLOY_URL = "#{API_URL}/deploy".freeze
 
   module Helper
-    class RollbarSourcemapsUploadHelper
+    class RollbarHelper
       # class methods that you define here become available in your action
-      # as `Helper::RollbarSourcemapsUploadHelper.your_method`
+      # as `Helper::RollbarHelper.your_method`
       #
       def self.create_bundle(os)
         UI.message('Creating React Native bundle')

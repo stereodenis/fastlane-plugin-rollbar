@@ -13,6 +13,6 @@ end
 
 # By default we want to import all available actions and helpers
 # A plugin can contain any number of actions and plugins
-Fastlane::RollbarSourcemapsUpload.all_classes.each do |current|
+Fastlane::Rollbar.all_classes.each do |current|
   require current
 end

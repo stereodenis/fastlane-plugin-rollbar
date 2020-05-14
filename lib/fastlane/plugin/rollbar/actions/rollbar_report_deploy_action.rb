@@ -7,7 +7,7 @@ module Fastlane
   module Actions
     class RollbarReportDeployAction < Action
       def self.run(params)
-        Helper::RollbarSourcemapsUploadHelper.report_deploy(
+        Helper::RollbarHelper.report_deploy(
           params[:api_key],
           params[:environment],
           params[:revision],

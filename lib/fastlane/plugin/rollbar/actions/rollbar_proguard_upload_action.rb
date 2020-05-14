@@ -7,7 +7,7 @@ module Fastlane
   module Actions
     class RollbarProguardUploadAction < Action
       def self.run(params)
-        Helper::RollbarSourcemapsUploadHelper.upload_proguard(
+        Helper::RollbarHelper.upload_proguard(
           params[:api_key],
           params[:proguard_path],
           params[:code_version],

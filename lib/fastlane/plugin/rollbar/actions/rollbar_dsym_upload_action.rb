@@ -7,7 +7,7 @@ module Fastlane
   module Actions
     class RollbarDsymUploadAction < Action
       def self.run(params)
-        Helper::RollbarSourcemapsUploadHelper.upload_dsym(
+        Helper::RollbarHelper.upload_dsym(
           params[:api_key],
           params[:dsym_path],
           params[:code_version],
