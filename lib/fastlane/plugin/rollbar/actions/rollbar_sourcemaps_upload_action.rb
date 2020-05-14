@@ -7,7 +7,7 @@ module Fastlane
   module Actions
     class RollbarSourcemapsUploadAction < Action
       def self.run(params)
-        Helper::RollbarHelper.create_bundle(os)
+        Helper::RollbarHelper.create_bundle(params[:os])
         Helper::RollbarHelper.upload_bundle(
           params[:api_key],
           params[:os],
