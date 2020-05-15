@@ -25,7 +25,7 @@ module Fastlane
           --entry-file index.js \
           --bundle-output /tmp/#{jsbundle} \
           --assets-dest #{assets_dest} \
-          --sourcemap-output ./tmp/sourcemap.#{os}.js \
+          --sourcemap-output /tmp/sourcemap.#{os}.js \
           --sourcemap-sources-root ./")
       end
 
