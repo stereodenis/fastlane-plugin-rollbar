@@ -37,7 +37,7 @@ module Fastlane
           -F version=#{code_version}.#{os} \
           -F minified_url=http://reactnativehost/#{jsbundle} \
           -F environment=#{environment} \
-          -F source_map=@tmp/sourcemap.#{os}.js \
+          -F source_map=@/tmp/sourcemap.#{os}.js \
           -F index.js=@index.js")
       end
 
