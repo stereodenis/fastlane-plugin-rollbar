@@ -60,12 +60,22 @@ module Fastlane
           -F mapping=@#{proguard_path}")
       end
 
-      def self.report_deploy(api_key, environment, revision)
+      def self.report_deploy(api_key, environment, revision, local_username, rollbar_username, comment, status)
         UI.message('Report deploy to Rollbar')
-        Action.sh("curl #{API_DEPLOY_URL} \
-          -F access_token=#{api_key} \
-          -F environment=#{environment} \
-          -F revision=#{revision}")
+        action_params = ["curl #{API_DEPLOY_URL} -F access_token=#{api_key} -F environment=#{environment} -F revision=#{revision}"]
+        if local_username
+          action_params.push("-F local_username=#{local_username}")
+        end
+        if rollbar_username
+          action_params.push("-F rollbar_username=#{rollbar_username}")
+        end
+        if comment
+          action_params.push("-F comment=#{comment}")
+        end
+        if status
+          action_params.push("-F status=#{status}")
+        end
+        Action.sh(action_params.join(" "))
       end
 
       def self.show_message
