@@ -2,7 +2,7 @@
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-rollbar)
 [![Gem Version](https://badge.fury.io/rb/fastlane-plugin-rollbar.svg)](https://badge.fury.io/rb/fastlane-plugin-rollbar)
-[![Build Status](https://travis-ci.org/microsoft/fastlane-plugin-appcenter.svg?branch=master)](https://travis-ci.org/microsoft/fastlane-plugin-appcenter)
+[![Build Status](https://travis-ci.org/stereodenis/fastlane-plugin-rollbar.svg?branch=master)](https://travis-ci.org/stereodenis/fastlane-plugin-rollbar)
 
 ## Getting Started
 
