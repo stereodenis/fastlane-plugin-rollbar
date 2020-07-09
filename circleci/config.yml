@@ -20,6 +20,7 @@ jobs:
     working_directory: '~/repo'
     docker:
       - image: 'circleci/ruby:2.4.2'
+
     steps:
       - checkout
       - *cache_restore_bundler
