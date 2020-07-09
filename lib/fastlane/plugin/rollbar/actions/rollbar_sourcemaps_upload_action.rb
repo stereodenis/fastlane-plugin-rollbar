@@ -38,7 +38,12 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :api_key, description: 'Rollbar API key', optional: false, type: String),
           FastlaneCore::ConfigItem.new(key: :os, description: 'ios or android', optional: false, type: String),
           FastlaneCore::ConfigItem.new(key: :code_version, description: 'Code version', optional: false, type: String),
-          FastlaneCore::ConfigItem.new(key: :bundle_identifier, description: 'Bundle identifier', optional: true, type: String),
+          FastlaneCore::ConfigItem.new(
+            key: :bundle_identifier,
+            description: 'Bundle identifier',
+            optional: true,
+            type: String
+          ),
           FastlaneCore::ConfigItem.new(key: :environment, description: 'Environment', optional: false, type: String),
         ]
       end

@@ -62,7 +62,9 @@ module Fastlane
 
       def self.report_deploy(api_key, environment, revision, local_username, rollbar_username, comment, status)
         UI.message('Report deploy to Rollbar')
-        action_params = ["curl #{API_DEPLOY_URL} -F access_token=#{api_key} -F environment=#{environment} -F revision=#{revision}"]
+        action_params = [
+          "curl #{API_DEPLOY_URL} -F access_token=#{api_key} -F environment=#{environment} -F revision=#{revision}"
+        ]
         if local_username
           action_params.push("-F local_username=#{local_username}")
         end
