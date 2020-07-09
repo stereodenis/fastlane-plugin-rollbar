@@ -1,7 +1,6 @@
 ---
 
 aliases:
-  # common - cache
   - &cache_restore_bundler
     restore_cache:
       name: cache | restore bundle
@@ -54,6 +53,10 @@ jobs:
     <<: *build
     docker:
       - image: 'circleci/ruby:2.6.5'
+  'ruby_2.7.1':
+    <<: *build
+    docker:
+      - image: 'circleci/ruby:2.7.1'
 
 workflows:
   version: 2
@@ -63,4 +66,5 @@ workflows:
       - 'ruby_2.4.9'
       - 'ruby_2.5.7'
       - 'ruby_2.6.5'
+      - 'ruby_2.7.1'
 ...
