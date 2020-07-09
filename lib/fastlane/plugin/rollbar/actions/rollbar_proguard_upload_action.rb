@@ -35,7 +35,12 @@ module Fastlane
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(key: :api_key, description: 'Rollbar API key', optional: false, type: String),
-          FastlaneCore::ConfigItem.new(key: :proguard_path, description: 'Proguard mapping path', optional: false, type: String),
+          FastlaneCore::ConfigItem.new(
+            key: :proguard_path,
+            description: 'Proguard mapping path',
+            optional: false,
+            type: String
+          ),
           FastlaneCore::ConfigItem.new(key: :code_version, description: 'Code version', optional: false, type: String),
           FastlaneCore::ConfigItem.new(key: :environment, description: 'Environment', optional: false, type: String),
         ]
