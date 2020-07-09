@@ -29,10 +29,7 @@ jobs:
           command: |
             BUNDLER_VERSION=$(awk 'END { print $NF }' Gemfile.lock)
             gem install bundler
-            bundle check || bundle install \
-              --jobs=4
-              --retry=3
-              --path vendor/bundle
+            bundle check || bundle install --jobs=4 --retry=3 --path vendor/bundle
       - *cache_save_bundler
       - run:
           name: run tests
