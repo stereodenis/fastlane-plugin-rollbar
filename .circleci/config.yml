@@ -4,11 +4,11 @@ aliases:
   - &cache_restore_bundler
     restore_cache:
       name: cache | restore bundle
-      key: v1-gems-{{ arch }}-{{ checksum "Gemfile" }}-{{ checksum "fastlane-plugin-firebase_app_distribution.gemspec" }}
+      key: v1-gems-{{ arch }}-{{ checksum "Gemfile" }}-{{ checksum "fastlane-plugin-rollbar_sourcemaps_upload.gemspec" }}
   - &cache_save_bundler
     save_cache:
       name: cache | store bundle
-      key: v1-gems-{{ arch }}-{{ checksum "Gemfile" }}-{{ checksum "fastlane-plugin-firebase_app_distribution.gemspec" }}
+      key: v1-gems-{{ arch }}-{{ checksum "Gemfile" }}-{{ checksum "fastlane-plugin-rollbar_sourcemaps_upload.gemspec" }}
       paths:
         - "vendor/bundle"
 
