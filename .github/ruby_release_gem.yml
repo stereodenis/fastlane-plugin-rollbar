@@ -1,0 +1,43 @@
+---
+
+name: Ruby | publish gem
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish_gem:
+    name: publish_gem
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: do checkout
+        uses: actions/checkout@master
+
+      - name: set up ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
+      - name: manage token(s) for package registry(s)
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          # default registry key
+          printf -- \
+          "---\n:rubygems_api_key: ${RUBYGEMS_TOKEN}\n" \
+          >> $HOME/.gem/credentials
+        env:
+          RUBYGEMS_TOKEN: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
+
+      - name: build gem(s)
+        run: gem build *.gemspec
+
+      - name: publish | default registry
+        run: gem push *.gem
+
+...
